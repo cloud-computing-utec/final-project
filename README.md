@@ -1,4 +1,4 @@
-# Yape Code Challenge: Done :frog:
+# Cloud Computing Final Project
 
 Following all the requirements given by Yape, this project was developed with
 
