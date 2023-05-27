@@ -3,6 +3,10 @@
 ## Application definition
 This app will emulate a transactional system, in which users possess a monetary balance and are capable of performing transactions that will alter this balance.
 
+## Functionalities
+This is a event-driven software,a Software design in which the flow of execution and program actions are primarily driven by events, such as user interaction, changes in data, or external signals.
+
+
 
 ## Technical details
 Following all the requirements given by the project outline, this project is intended to be developed with:
@@ -48,3 +52,6 @@ This project already has migrations added, so the entities are going to be creat
 * Monitoring: We will monitor at all times the health of the two servers/pads used in our application, while stress testing them. At later stages, this could be improved through the use of Kubernetes.
 * Load balancing: Our application has to process at least 5000 concurrent calls, if it were to be used as a transaction app.
 * Scalability: We are going to manually handle the scalability of resources of our application, opting out of serverless architectures.
+
+
+
