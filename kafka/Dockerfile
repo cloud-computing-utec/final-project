@@ -1,5 +1,4 @@
-# Base image
-FROM node:16-alpine
+FROM confluentinc/cp-zookeeper:5.5.3
 
 COPY .env /tmp/.env
 
@@ -15,23 +14,14 @@ ENV KAFKA_MESSAGE_PATTERN=""
 ENV KAFKA_CLIENT_ID=""
 ENV KAFKA_GROUP_ID=""
 ENV KAFKA_PROVIDER=""
-
 ENV ZOOKEEPER_CLIENT_PORT=""
 ENV ZOOKEEPER_TICK_TIME=""
 
-
 RUN echo "source /tmp/.env" > /docker-entrypoint-initdb.d/load-env.sh
 
-
-WORKDIR /app
-
-COPY package*.json ./
-
-RUN npm install --silent
-RUN npm i -g typeorm ts-node
-# Bundle app source
-COPY . .
-
-EXPOSE 8080
-
-CMD npm run typeorm:create-entities && npm run migration:up && npm start
+ENV KAFKA_ZOOKEEPER_CONNECT="zookeeper:2181"
+ENV KAFKA_ADVERTISED_LISTENERS="PLAINTEXT://kafka:29092,PLAINTEXT_HOST://localhost:9092"
+ENV KAFKA_LISTENER_SECURITY_PROTOCOL_MAP="PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT"
+ENV KAFKA_BROKER_ID="1"
+ENV KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR="1"
+ENV KAFKA_JMX_PORT="9991"
