@@ -5,7 +5,6 @@ import { DataLoaderService } from 'src/services/dataloader/dataloader.service';
 import { TransactionService } from 'src/services/transaction/transaction.service';
 import { TransactionResolver } from 'src/resolvers/transaction.resolver';
 import ConfigYapeProvider from 'src/providers/yape.provider';
-import { makeCounterProvider } from '@willsoto/nestjs-prometheus';
 
 @Module({
   imports: [

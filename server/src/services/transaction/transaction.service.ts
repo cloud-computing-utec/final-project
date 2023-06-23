@@ -3,8 +3,6 @@ import { ClientKafka } from '@nestjs/microservices/client';
 import { InjectRepository } from '@nestjs/typeorm';
 import { first } from 'rxjs';
 import { Repository } from 'typeorm';
-import { InjectMetric } from '@willsoto/nestjs-prometheus';
-import { Counter } from 'prom-client';
 
 import {
   Transaction,
@@ -30,10 +28,7 @@ export class TransactionService implements OnModuleInit {
     private transactionStatusRepo: Repository<TransactionStatus>,
     @InjectRepository(TransactionType)
     private transactionTypeRepo: Repository<TransactionType>,
-    @InjectMetric('transactions_saved')
-    public transactions_saved_counter: Counter<string>,
-    @InjectMetric('transactions_updated')
-    public transactions_updated_counter: Counter<string>,
+
   ) {}
 
   private findTableFromDecorator(tableClass): string {
@@ -91,7 +86,6 @@ export class TransactionService implements OnModuleInit {
         ? TransactionStatusEnum.APPROVED
         : TransactionStatusEnum.REJECTED,
     );
-    this.transactions_updated_counter.inc(1);
   };
 
   async getTransacStatusFromTids(transactionStatusIds: number[]) {
@@ -177,9 +171,6 @@ export class TransactionService implements OnModuleInit {
     const newTransaction = this.buildTransactionObject(data);
 
     const savedTransaction = await this.saveTransaction(newTransaction);
-
-    this.logger.log('transactions_saved_counter');
-    this.transactions_saved_counter.inc(1);
 
     const dataToSend = this.buildDataToSendToAntifraudService(savedTransaction);
 
