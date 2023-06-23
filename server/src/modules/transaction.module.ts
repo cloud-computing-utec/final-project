@@ -14,15 +14,7 @@ import ConfigYapeProvider from 'src/providers/yape.provider';
     ConfigYapeProvider,
     DataLoaderService,
     TransactionService,
-    TransactionResolver,
-    makeCounterProvider({
-      name: 'transactions_saved',
-      help: 'Transactions Saved',
-    }),
-    makeCounterProvider({
-      name: 'transactions_updated',
-      help: 'Transaction Updated',
-    })
+    TransactionResolver
   ],
   exports: [DataLoaderService],
 })
