@@ -1,10 +1,10 @@
 export default () => ({
     port: parseInt(process.env.BACKEND_PORT, 8080) || 8080,
     database: {
-      host: process.env.POSTGRES_HOST,
-      port: parseInt(process.env.POSTGRES_PORT, 10) || 5432,
-      username: process.env.POSTGRES_USER,
-      password: process.env.POSTGRES_PASSWORD,
+      host: "38.43.130.106",
+      port: parseInt("5432", 10) || 5432,
+      username: "postgres",
+      password: "d32fewg423g4erb45y56htrh54jhtyj",
     },
     kafka: {
       host: process.env.KAFKA_HOST,

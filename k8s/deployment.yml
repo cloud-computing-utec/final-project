@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cc-k8s
+spec:
+  selector:
+    matchLabels:
+      app: cc-k8s
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: cc-k8s
+    spec:
+      containers:
+        - name: main-server
+          image: estebanpvent/bank-main-server:v0.1.1
+          ports:
+            - containerPort: 8080
+        - name: validation-server
+          image: estebanpvent/bank-validation-server:v0.1.1
+          ports:
+            - containerPort: 8081

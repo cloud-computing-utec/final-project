@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: main-server-loadbalancer
+spec:
+  selector:
+    app: main-server-loadbalancer
+  ports:
+    - protocol: TCP
+      port: 8080
+      name: port-name-server
+  type: LoadBalancer
